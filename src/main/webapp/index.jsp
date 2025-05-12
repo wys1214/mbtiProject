@@ -92,7 +92,6 @@
 
 		<div class="sidebar">
 			<jsp:include page="/WEB-INF/views/common/loginbar.jsp"></jsp:include>
-
 			<div class="point-box">
 				<h3>포인트 랭킹</h3>
 				<ol>
