@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<link rel="stylesheet" href="/resources/css/default.css">
+<link rel="stylesheet" href="/resource/css/default.css">
 <footer>
     <div class="footer_left">
       <p>팀명 : 너티야</p>
