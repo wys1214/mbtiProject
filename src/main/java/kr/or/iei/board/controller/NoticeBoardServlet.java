@@ -7,9 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import kr.or.iei.common.ListData;
-import kr.or.iei.notice.model.service.NoticeService;
-import kr.or.iei.notice.model.vo.Notice;
+
 
 @WebServlet("/board/noticeGetList")
 public class NoticeBoardServlet extends HttpServlet {
