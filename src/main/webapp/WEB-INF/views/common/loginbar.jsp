@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/resource/css/default.css">
+<link rel="stylesheet" href="/resources/css/default.css">
 <div class="login-box">
   <h3>로그인</h3>
   <form action="/member/login" method="post">

@@ -67,7 +67,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
-		String query = "insert into tbl_member (member_id, member_pw, member_nickname, member_name, member_email, member_phone, member_mbti values(to_char(sysdate, 'yymmdd') || lpad(seq_member.nextval, 4, '0'), ?, ?, ?, ?, ?, ?, ?, default, sysdate, default, default, default, default, default)";
+		String query = "insert into tbl_member (member_no, member_id, member_pw, member_nickname, member_name, member_email, member_phone, member_mbti) values (to_char(sysdate, 'yymmdd') || lpad(seq_member.nextval, 4, '0'), ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);

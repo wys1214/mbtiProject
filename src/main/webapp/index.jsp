@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티 갤러리</title>
-<link rel="stylesheet" href="/resource/css/default.css">
+<link rel="stylesheet" href="/resources/css/default.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

@@ -98,6 +98,7 @@
 }
 
 </style>
+<script src="/resources/js/sweetalert.min.js"></script>
 <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
 </head>
 <body>
