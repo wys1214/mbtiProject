@@ -26,4 +26,12 @@
       <button class="signup-btn">회원가입</button>
     </div>
   </div>
+  
+  <script>
+ 
+  $('.signup-btn').on('click', function () {
+      location.href = '/member/joinFrm';
+    });
+  
+  </script>
 </header>
