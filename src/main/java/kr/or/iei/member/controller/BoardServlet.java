@@ -56,6 +56,11 @@ public class BoardServlet extends HttpServlet {
       case "test":
         path = "#";
         break;
+        
+      case "mypage":
+    	path = "/WEB-INF/views/member/myPage.jsp";
+        break;
+    	  
       case "1" :
         path = "#";
       case "2" :

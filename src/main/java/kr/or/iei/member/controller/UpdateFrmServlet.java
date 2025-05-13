@@ -15,7 +15,7 @@ import kr.or.iei.member.model.vo.Member;
 /**
  * Servlet implementation class UpdateFrmServlet
  */
-@WebServlet("/member/update")
+@WebServlet("/member/updateFrm")
 public class UpdateFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -21,6 +21,9 @@
       <a href="/board?type=intro">가입인사</a>
       <a href="/board?type=test">테스트할래요</a>
     </div>
+    
+    
+    
     <div>
       <button class="login-btn">로그인</button>
       <button class="signup-btn">회원가입</button>
