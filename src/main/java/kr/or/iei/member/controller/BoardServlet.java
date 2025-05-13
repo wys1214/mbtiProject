@@ -30,9 +30,9 @@ public class BoardServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 String type = request.getParameter("type");  //받아서 스위치로
+	String type = request.getParameter("type");  //받아서 스위치로
     String path = null;
-
+    
     //각 게시판별 주소 입력하기. 일단 임시로 비워둠.
     switch(type) {
       case "notice":

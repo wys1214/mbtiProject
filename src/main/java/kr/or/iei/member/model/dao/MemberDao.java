@@ -238,4 +238,35 @@ public class MemberDao {
 		return result;
 	}
 */
+
+	public int updateMember(Connection conn, Member a) {
+		PreparedStatement pstmt = null; 
+		int result = 0;
+		
+		String query ="update tbl_member set member_mbti = ?, member_id = ?, member_nickname = ?, member_email = ?, member_phone = ? where member_no = ?";
+				
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, a.getMemberMbti());
+			pstmt.setString(2, a.getMemberId());
+			pstmt.setString(3, a.getMemberNickname());
+			pstmt.setString(4, a.getMemberEmail());
+			pstmt.setString(5, a.getMemberPhone());
+			pstmt.setInt(6, a.getMemberNo());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		
+		
+		
+		
+		return result;
+	}
 }
