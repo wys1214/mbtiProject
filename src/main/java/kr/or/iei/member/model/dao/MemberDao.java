@@ -10,6 +10,89 @@ import kr.or.iei.common.JDBCTemplate;
 import kr.or.iei.member.model.vo.Member;
 
 public class MemberDao {
+	
+	
+	public int idDuplChk(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int cnt = 0; //초기화
+		
+		String query = "select count(*) cnt from tbl_member where member_id = ?"; //여기서 cnt 는 count(*)의 별칭.
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();//여기서 결과가 1 아니면 2 로 나올것. 처음 컬럼을 가르키니 rset.next() 을 사용하여 행 갯수 받기.
+			
+			if (rset.next()) {
+				cnt = rset.getInt("cnt"); //여기에 위에 지정해놓은 별칭 cnt 작성
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return cnt;
+	}
+	
+	public int nicknameDuplChk(Connection conn, String memberNickname) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int cnt = 0; //초기화
+		
+		String query = "select count(*) cnt from tbl_member where member_nickname = ?"; //여기서 cnt 는 count(*)의 별칭.
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberNickname);
+			
+			rset = pstmt.executeQuery();//여기서 결과가 1 아니면 2 로 나올것. 처음 컬럼을 가르키니 rset.next() 을 사용하여 행 갯수 받기.
+			
+			if (rset.next()) {
+				cnt = rset.getInt("cnt"); //여기에 위에 지정해놓은 별칭 cnt 작성
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return cnt;
+	}
+	
+	//회원가입
+	public int memberJoin(Connection conn, Member newMember) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query = "insert into tbl_member (member_id, member_pw, member_nickname, member_name, member_email, member_phone, member_mbti values(to_char(sysdate, 'yymmdd') || lpad(seq_member.nextval, 4, '0'), ?, ?, ?, ?, ?, ?, ?, default, sysdate, default, default, default, default, default)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, newMember.getMemberId());
+			pstmt.setString(2, newMember.getMemberPw());
+			pstmt.setString(3, newMember.getMemberNickname());
+			pstmt.setString(4, newMember.getMemberName());
+			pstmt.setString(5, newMember.getMemberEmail());
+			pstmt.setString(6, newMember.getMemberPhone());
+			pstmt.setString(7, newMember.getMemberMbti());
+															
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+
+	}
+
+	
+	
 /*
 	public int memberJoin(Connection conn, Member member) {
 		PreparedStatement pstmt = null;	//반환객체
@@ -238,4 +321,9 @@ public class MemberDao {
 		return result;
 	}
 */
+
+
+
+
+	
 }
