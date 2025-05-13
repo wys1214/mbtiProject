@@ -16,4 +16,5 @@ public class Post {
     private String postDate;          // date - 게시글 작성일 (DDL 상 이름은 post_date, 주석의 post_creation_date는 의도)
     private String postUpdateDate;    // date - 게시글 수정일 (nullable)
     private int postViewCount;        // number(10) - 조회수
+    private String postWriterNickname;// 테이블에는 없음, 작성자 닉네임을 받아오기 위한 변수 추가
 }
