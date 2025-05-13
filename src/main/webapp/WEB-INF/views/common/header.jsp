@@ -13,7 +13,7 @@
   <!-- 메뉴바 + 로그인/회원가입 -->
   <div class="header_bottom">
     <div class="menubar">
-      <a href="/board?type=notice">공지사항</a>
+      <a href="/board?type=notice&reqPage=1">공지사항</a>
       <a href="/board?type=free">자유게시판</a>
       <a href="/board?type=worry">고민있어요</a>
       <a href="/board?type=recommend">추천합니다</a>

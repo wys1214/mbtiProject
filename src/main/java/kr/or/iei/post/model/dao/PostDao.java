@@ -23,7 +23,7 @@ public class PostDao {
                      + "            p.post_no, p.board_code, p.post_title, "
                      + "            m.member_nickname as post_writer_nickname, "
                      + "            p.member_no as post_writer_member_no, " // Post VO에 memberNo를 저장하기 위함
-                     + "            to_char(p.post_date, 'yyyy-mm-dd') as post_creation_date, "
+                     + "            to_char(p.post_date, 'yyyy-mm-dd') as post_date, "
                      + "            p.post_view_count "
                      + "        from tbl_post p "
                      + "        join tbl_member m on (p.member_no = m.member_no) "
@@ -44,8 +44,8 @@ public class PostDao {
                 p.setBoardCode(rset.getString("board_code")); 
                 p.setPostTitle(rset.getString("post_title"));
                 p.setPostWriterNickname(rset.getString("post_writer_nickname")); // Post VO에 setPostWriterNickname 가정
-                p.setMemberNo(rset.getInt("post_writer_member_no")); 
-                p.setPostDate(rset.getString("post_creation_date")); 
+                p.setPostMemberNo(rset.getString("post_writer_member_no")); 
+                p.setPostDate(rset.getString("post_date")); 
                 p.setPostViewCount(rset.getInt("post_view_count"));
                 list.add(p);
             }
@@ -110,7 +110,7 @@ public class PostDao {
             int i = 1;
             pstmt.setString(i++, p.getPostNo());
             pstmt.setString(i++, p.getBoardCode());    
-            pstmt.setInt(i++, p.getMemberNo());        
+            pstmt.setString(i++, p.getPostMemberNo());        
             pstmt.setString(i++, p.getPostTitle());
             pstmt.setString(i++, p.getPostContent());
             result = pstmt.executeUpdate();
@@ -163,7 +163,7 @@ public class PostDao {
         String query = "select " +
                        "    p.post_no, p.board_code, p.member_no, m.member_nickname as post_writer_nickname, " +
                        "    p.post_title, p.post_content, " +
-                       "    to_char(p.post_date, 'yyyy-mm-dd hh24:mi:ss') as post_creation_date, " + 
+                       "    to_char(p.post_date, 'yyyy-mm-dd hh24:mi:ss') as post_date, " + 
                        "    to_char(p.post_update_date, 'yyyy-mm-dd hh24:mi:ss') as post_update_date, " +
                        "    p.post_view_count " +
                        "from tbl_post p " +
@@ -178,11 +178,11 @@ public class PostDao {
                 p = new Post(); 
                 p.setPostNo(rset.getString("post_no"));
                 p.setBoardCode(rset.getString("board_code"));
-                p.setMemberNo(rset.getInt("member_no")); 
+                p.setPostMemberNo(rset.getString("member_no")); 
                 p.setPostWriterNickname(rset.getString("post_writer_nickname")); 
                 p.setPostTitle(rset.getString("post_title"));
                 p.setPostContent(rset.getString("post_content"));
-                p.setPostDate(rset.getString("post_creation_date")); 
+                p.setPostDate(rset.getString("post_date")); 
                 p.setPostUpdateDate(rset.getString("post_update_date")); 
                 p.setPostViewCount(rset.getInt("post_view_count"));
             }

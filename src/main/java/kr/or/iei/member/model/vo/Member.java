@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Member {
 
-    private int memberNo;                 // number(10)
+    private String memberNo;              // string으로 변경함
     private String memberId;              // varchar2(50)
     private String memberPw;              // varchar2(72)
     private String memberNickname;        // varchar2(50)

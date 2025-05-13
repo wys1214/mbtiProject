@@ -44,7 +44,7 @@ public class PostWriteServlet extends HttpServlet {
             return;
         }
         Member loginMember = (Member) session.getAttribute("loginMember");
-        int memberNo = loginMember.getMemberNo(); // 세션에서 실제 회원번호 가져오기
+        String memberNo = loginMember.getMemberNo(); // 세션에서 실제 회원번호 가져오기
 
         String rootPath = getServletContext().getRealPath("/"); 
         String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
@@ -93,7 +93,7 @@ public class PostWriteServlet extends HttpServlet {
         p.setBoardCode(boardCode); // 게시판 코드 설정
         p.setPostTitle(postTitle);
         p.setPostContent(postContent);
-        p.setMemberNo(memberNo); // 세션에서 가져온 회원번호 사용
+        p.setPostMemberNo(memberNo); // 세션에서 가져온 회원번호 사용
         // p.setPostCategory(postCategory); // 말머리 저장 필요시
 
         PostService service = new PostService();
