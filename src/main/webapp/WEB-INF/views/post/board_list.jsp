@@ -4,11 +4,11 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>커뮤니티 갤러리 - 공지사항</title>
-  <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/default.css"> --%>
+  <title>커뮤니티 갤러리 - <c:out value="${boardTitle}" default="게시판"/></title>
+  <%-- <link rel="stylesheet" href="/resources/css/default.css"> --%> <%-- 사용자 요청에 따라 주석 유지 --%>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script> 
+  <script src="/resources/js/sweetalert.min.js"></script> <%-- 컨텍스트 경로 불필요 가정 --%>
   
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
@@ -17,7 +17,7 @@
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.min.js"></script>
 
   <style>
-    /* === 통합 CSS 시작 (두 JSP 파일 동일 적용) === */
+    /* === 통합 CSS 시작 (이전 답변의 style.css 내용과 동일) === */
     * { 
       box-sizing: border-box; 
       margin: 0; 
@@ -83,36 +83,36 @@
     .post-table td a { color: #333; text-decoration: none; font-weight: normal; }
     .post-table td a:hover { color: #ff3366; text-decoration: underline; }
     
-	    /* 페이지네이션 스타일 (스크린샷과 유사하게) */
+	/* 페이지네이션 스타일 (스크린샷과 유사하게) */
 	.pagination { 
 	    display: flex; 
 	    justify-content: center; 
-	    margin-top: 30px; /* 테이블과의 간격 */
+	    margin-top: 30px; 
 	    margin-bottom: 20px; 
 	    padding-left: 0; 
 	}
-	.pagination ul.circle-style { /* Java 코드에서 생성된 ul 태그 대상 */
+	.pagination ul.circle-style { 
 	    list-style: none; 
 	    padding: 0; 
 	    margin: 0; 
 	    display: flex; 
-	    align-items: center; /* 수직 중앙 정렬 */
+	    align-items: center; 
 	} 
 	.pagination ul.circle-style li { 
 	    display: inline-block; 
-	    margin: 0 4px; /* 버튼 간 간격 */
+	    margin: 0 4px; 
 	}
 	.pagination ul.circle-style li a.page-item,
-	.pagination ul.circle-style li span.page-item { /* 현재 페이지가 링크가 아닌 span일 경우도 고려 */
+	.pagination ul.circle-style li span.page-item { 
 	    color: #333;
 	    padding: 8px 12px; 
 	    text-decoration: none;
 	    border: 1px solid #ddd;
-	    border-radius: 4px; /* 약간 둥근 사각형 */
+	    border-radius: 4px; 
 	    font-size: 14px;
 	    line-height: 1.5; 
 	    display: inline-block; 
-	    background-color: white; /* 기본 배경 흰색 */
+	    background-color: white; 
 	    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 	}
 	.pagination ul.circle-style li a.page-item:hover {
@@ -121,18 +121,17 @@
 	    color: #333;
 	}
 	.pagination ul.circle-style li a.page-item.active-page,
-	.pagination ul.circle-style li span.page-item.active-page { /* 활성 페이지 스타일 */
-	    background-color: #ff3366; /* 스크린샷의 핑크색 배경 */
+	.pagination ul.circle-style li span.page-item.active-page { 
+	    background-color: #ff3366; 
 	    color: white;
 	    border-color: #ff3366;
 	    font-weight: bold;
 	}
 	.pagination ul.circle-style li a.page-item .material-icons,
-	.pagination ul.circle-style li span.page-item .material-icons { /* 이전/다음 아이콘 */
+	.pagination ul.circle-style li span.page-item .material-icons { 
 	    font-size: 20px; 
 	    vertical-align: middle; 
 	}
-	/* "..." 생략 표시에 대한 스타일 (만약 span 태그 등으로 생성된다면) */
 	.pagination ul.circle-style li span.ellipsis {
 	    padding: 8px 6px;
 	    color: #777;
@@ -144,7 +143,7 @@
     .search-btn { padding: 8px 15px; background: #ff3366; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
     .search-btn:hover { background: #ff3366da; }
 
-    /* 글쓰기 폼에만 적용되는 스타일 */
+    /* 글쓰기 폼에만 적용되는 스타일 (post_write_form.jsp에서 사용) */
     .post-write-form-container { width: 100%; background-color: white; padding: 25px 30px; border: 1px solid #ccc; border-radius: 10px; } 
     .form-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
     .form-title { font-size: 22px; color: #333; margin-bottom: 0; }
@@ -166,6 +165,58 @@
     .form-footer-note { margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; font-size: 12px; color: #777; text-align: right; }
     .form-input-file { padding: 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; width: 100%;}
 
+    /* 게시글 상세 보기 스타일 (post_detail.jsp에서 사용) */
+    .post-detail-container { background-color: white; padding: 25px 30px; border: 1px solid #ccc; border-radius: 10px; }
+    .post-view-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
+    .board-title { font-size: 22px; color: #333; margin-bottom: 0; display: flex; align-items: center; }
+    /* .board-icon 은 이미 정의됨 */
+    .post-navigation button, .post-navigation a.btn-list {
+        background-color: #f1f1f1; color: #333; border: 1px solid #ddd; padding: 6px 12px;
+        margin-left: 8px; border-radius: 4px; font-size: 14px; cursor: pointer; text-decoration: none;
+    }
+    .post-navigation button:hover, .post-navigation a.btn-list:hover { background-color: #e0e0e0; }
+    .post-navigation a.btn-list { background-color: #6c757d; color: white; border-color: #6c757d;}
+    .post-navigation a.btn-list:hover { background-color: #5a6268; }
+    .post-title-area { padding: 20px 0; border-bottom: 1px solid #eee; }
+    .post-title-area h3 { font-size: 28px; font-weight: 600; margin: 0; color: #333; line-height: 1.4;}
+    .post-meta-area { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; font-size: 14px; color: #555; border-bottom: 1px solid #eee; flex-wrap: wrap;}
+    .author-info .author-name { font-weight: bold; color: #333; }
+    .author-info .post-date, .author-info .view-count { margin-left: 15px; color: #777; }
+    .post-actions a { color: #007bff; text-decoration: none; margin-left: 10px; font-size: 14px; }
+    .post-actions a:hover { text-decoration: underline; }
+    .post-actions .btn-delete { color: #dc3545; }
+    .post-content-area { padding: 25px 5px; line-height: 1.8; font-size: 16px; min-height: 200px; word-wrap: break-word; white-space: pre-wrap; }
+    .post-content-area img { max-width: 100%; height: auto; border-radius: 4px; margin: 10px 0; }
+    .post-content-area table { width: auto !important; max-width:100%; border-collapse: collapse !important; margin: 1em 0 !important; }
+    .post-content-area table td, .post-content-area table th { border: 1px solid #ccc !important; padding: 5px !important; }
+    .post-files-area { padding: 15px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin: 20px 0; }
+    .post-files-area h4 { font-size: 16px; margin-bottom: 10px; }
+    .post-files-area ul { list-style: none; padding-left: 0; }
+    .post-files-area li { margin-bottom: 5px; }
+    .post-files-area li a { text-decoration: none; color: #007bff; font-size: 14px; }
+    .post-files-area li a:hover { text-decoration: underline; }
+    .comment-section { margin-top: 30px; padding-top: 20px; border-top: 2px solid #ddd; }
+    .comment-section > h4 { font-size: 18px; margin-bottom: 20px; color: #333; }
+    .comment-list .no-comments { text-align: center; color: #777; padding: 20px; }
+    .comment-item { padding: 15px 0; border-bottom: 1px dotted #eee; }
+    .comment-item:last-child { border-bottom: none; }
+    .comment-author-info { display: flex; align-items: center; margin-bottom: 8px; font-size: 13px; color: #777; }
+    .comment-author-info .comment-author { font-weight: bold; color: #333; margin-right: 10px; }
+    .comment-author-info .comment-date { margin-right: auto; }
+    .comment-action { margin-left: 10px; color: #007bff; cursor: pointer; font-size: 12px; background: none; border: none; padding:0; }
+    .comment-action:hover { text-decoration: underline; }
+    .comment-action.delete-comment-btn { color: #dc3545; }
+    .comment-content { font-size: 14px; line-height: 1.7; color: #444; padding-left: 5px; white-space: pre-wrap; word-wrap: break-word; }
+    .comment-item.reply-item { margin-left: 40px; border-top: 1px dashed #f0f0f0; padding-top: 15px; margin-top: 10px; }
+    .comment-form-container { margin-top: 25px; padding: 20px; background-color: #f9f9f9; border-radius: 8px; }
+    .comment-form-container.new-comment-form { margin-bottom: 20px; }
+    .comment-form-container h5 { font-size: 16px; margin-bottom: 10px; }
+    .comment-form-container textarea { width: 100%; min-height: 70px; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; font-family: 'Pretendard', sans-serif; resize: vertical; margin-bottom: 10px; }
+    .btn-submit-comment { background: #5cb85c; color: white; padding: 8px 15px; border: none; border-radius: 4px; font-size: 14px; cursor: pointer; float: right; }
+    .btn-submit-comment:hover { background: #4cae4c; }
+    .login-prompt-for-comment { clear:both; text-align: center; padding: 20px 0; font-size: 14px; color: #777; }
+    .login-prompt-for-comment a { color: #ff3366; font-weight: bold; }
+        
     /* 하단 footer */
     footer { width: 100%; background: #353940; color: white; flex-shrink: 0; }
     .footer-content-wrapper { max-width: 1200px; margin: 0 auto; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
@@ -178,48 +229,15 @@
 </head>
 <body>
 
-<header>
-    <div class="header_top_outer">
-        <div class="header_top_inner">
-            <div class="logo"><a href="${pageContext.request.contextPath}/">성격봐라</a></div>
-        </div>
-    </div>
-    <div class="header_bottom_outer">
-        <div class="header_bottom_inner">
-            <div class="menubar">
-                <a href="${pageContext.request.contextPath}/notice/getList?reqPage=1">공지사항</a>
-                <a href="#">자유게시판</a>
-                <a href="#">고민있어요</a>
-                <a href="#">추천합니다</a>
-                <a href="#">베스트게시글</a>
-                <a href="#">가입인사</a>
-                <a href="#">테스트할래요</a>
-            </div>
-            <div class="header-actions"> 
-                <c:choose>
-                    <c:when test="${empty sessionScope.loginMember}">
-                        <button class="login-btn" onclick="location.href='${pageContext.request.contextPath}/member/loginFrm'">로그인</button>
-                        <button class="signup-btn" onclick="location.href='${pageContext.request.contextPath}/member/joinFrm'">회원가입</button>
-                    </c:when>
-                    <c:otherwise>
-                        <button class="login-btn" onclick="location.href='${pageContext.request.contextPath}/member/myPage'">마이페이지</button> 
-                        <button class="signup-btn" onclick="location.href='${pageContext.request.contextPath}/member/logout'">로그아웃</button>
-                    </c:otherwise>
-                </c:choose>
-            </div>
-        </div>
-    </div>
-</header>
+<%-- 헤더 Include --%>
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 <div class="container">
     <div class="main">
         <div class="board-container">
             <div class="board-header">
                 <h2><span class="board-icon">&#10004;</span> 
-                    <c:choose>
-                        <c:when test="${not empty boardTitle}">${boardTitle}</c:when>
-                        <c:otherwise>공지사항</c:otherwise>
-                    </c:choose>
+                    <c:out value="${boardTitle}" default="게시판"/>
                 </h2> 
             </div>
 
@@ -237,7 +255,7 @@
                 </div>
                 <c:if test="${not empty sessionScope.loginMember}">
                   <div class='list-header'>
-                    <a href="${pageContext.request.contextPath}/notice/writeFrm" class="write-post-btn">글쓰기</a> 
+                    <a href="/post/writeFrm?boardType=${currentBoardType}&boardCode=${currentBoardCode}" class="write-post-btn">글쓰기</a> 
                   </div>
                 </c:if>
             </div>
@@ -255,22 +273,21 @@
                 </thead>
                 <tbody>
                     <c:choose>
-                        <c:when test="${empty noticeList}">
+                        <c:when test="${empty postList}"> 
                             <tr>
                                 <td colspan="6" style="text-align:center; padding: 50px 0;">등록된 게시글이 없습니다.</td>
                             </tr>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="n" items="${noticeList}">
+                            <c:forEach var="p" items="${postList}"> 
                                 <tr>
-                                    <td>${n.noticeNo}</td>
+                                    <td>${p.postNo}</td> 
                                     <td class="post-title">
-                                        <%-- 현재 페이지 번호(param.reqPage 또는 requestScope.reqPage)를 상세 보기 후 목록으로 돌아올 때 사용하기 위해 전달 --%>
-                                        <a href="${pageContext.request.contextPath}/notice/view?noticeNo=${n.noticeNo}&reqPage=${not empty param.reqPage ? param.reqPage : requestScope.reqPage}">${n.noticeTitle}</a> 
+                                        <a href="/post/view?postNo=${p.postNo}&boardType=${currentBoardType}&reqPage=${reqPage}">${p.postTitle}</a> 
                                     </td>
-                                    <td>${n.noticeWriter}</td> 
-                                    <td>${n.noticeDate}</td>
-                                    <td>${n.readCount}</td>
+                                    <td>${p.postWriterNickname}</td> 
+                                    <td>${p.postDate}</td> 
+                                    <td>${p.postViewCount}</td> 
                                     <td>-</td> 
                                 </tr>
                             </c:forEach>
@@ -281,14 +298,14 @@
 
             <div class="board-footer">
                 <div class="pagination">
-                    <%-- HTML 태그가 포함된 pageNavi를 올바르게 출력 --%>
                     <c:out value="${pageNavi}" escapeXml="false" />
                 </div>
             </div>
 
             <div class="board-search">
-                <form action="${pageContext.request.contextPath}/notice/search"> 
-                    <input type="hidden" name="reqPage" value="1">
+                <form action="/board">  
+                    <input type="hidden" name="type" value="${currentBoardType}"> 
+                    <input type="hidden" name="reqPage" value="1"> 
                     <select name="searchType" class="search-type-select">
                         <option value="title">제목</option>
                         <option value="content">내용</option>
@@ -302,29 +319,7 @@
     </div>
 
     <div class="sidebar">
-        <div class="login-box">
-            <h3>로그인</h3>
-            <c:choose>
-                <c:when test="${empty sessionScope.loginMember}">
-                    <form action="${pageContext.request.contextPath}/member/login" method="post">
-                        <input type="text" name="memberId" placeholder="아이디" required>
-                        <input type="password" name="memberPw" placeholder="비밀번호" required>
-                        <button type="submit">로그인</button>
-                    </form>
-                </c:when>
-                <c:otherwise>
-                    <%-- 
-                        PropertyNotFoundException: [memberNickname] 오류 발생 시:
-                        1. kr.or.iei.member.model.vo.Member 클래스에 public String getMemberNickname() 메소드가 있는지 확인하세요.
-                        2. 필드명이나 getter 메소드명이 다르다면 ${sessionScope.loginMember.실제필드명} 으로 수정하세요.
-                           (예: ${sessionScope.loginMember.nickname} 또는 ${sessionScope.loginMember.memberId})
-                    --%>
-                    <p><c:out value="${sessionScope.loginMember.memberNickname}"/>님, 환영합니다.</p> 
-                    <button onclick="location.href='${pageContext.request.contextPath}/member/myPage'">마이페이지</button>
-                    <button style="margin-top:5px;" onclick="location.href='${pageContext.request.contextPath}/member/logout'">로그아웃</button>
-                </c:otherwise>
-            </c:choose>
-        </div>
+        <%@ include file="/WEB-INF/views/common/loginbar.jsp" %>
         <div class="point-box">
             <h3>포인트 랭킹</h3>
             <ol>
@@ -336,19 +331,7 @@
     </div>
 </div>
 
-<footer>
-  <div class="footer-content-wrapper">
-    <div class="footer_left">
-      <pre>팀명 : 너티야 | 팀원: 김유진 성덕 왕윤식 윤서진 정다은</pre> 
-    </div>
-    <div class="footer_right">
-      <a href="#">사이트 소개</a>
-      <a href="#">이용약관</a>
-      <a href="#">개인정보처리방침</a>
-      <a href="#">고객센터</a>
-    </div>
-  </div>
-</footer>
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>
 
 </body>
 </html>
