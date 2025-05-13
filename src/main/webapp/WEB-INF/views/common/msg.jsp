@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="/resources/js/sweetalert.min.js"></script>
+<script src="/resource/js/sweetalert.min.js"></script>
 </head>
 <body>
 	<script>
