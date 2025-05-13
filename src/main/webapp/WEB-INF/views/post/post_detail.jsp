@@ -190,8 +190,8 @@
             <div class="post-meta-area">
                 <div class="author-info">
                     <span class="author-name"><c:out value="${post.postWriterNickname}" /></span>
-                    <span class="post-date">작성일: <c:out value="${post.postCreationDate}" /></span>
-                    <c:if test="${not empty post.postUpdateDate && post.postUpdateDate != post.postCreationDate}">
+                    <span class="post-date">작성일: <c:out value="${post.postDate}" /></span>
+                    <c:if test="${not empty post.postUpdateDate && post.postUpdateDate != post.postDate}">
                         <span class="post-date">(수정일: <c:out value="${post.postUpdateDate}" />)</span>
                     </c:if>
                     <span class="view-count">조회: <c:out value="${post.postViewCount}" /></span>
@@ -238,7 +238,7 @@
                             <div class="comment-item" id="comment-${comment.commentNo}">
                                 <div class="comment-author-info">
                                     <strong class="comment-author"><c:out value="${comment.commentWriterNickname}" /></strong>
-                                    <span class="comment-date"><c:out value="${comment.commentCreationDate}" /></span>
+                                    <span class="comment-date"><c:out value="${comment.commentDate}" /></span>
                                     <div style="margin-left:auto;"> <%-- 버튼들을 오른쪽으로 밀기 위한 div --%>
                                         <c:if test="${not empty sessionScope.loginMember && sessionScope.loginMember.memberNo == comment.memberNo}">
                                             <button type="button" class="comment-action edit-comment-btn" data-comment-no="${comment.commentNo}">수정</button>
@@ -255,7 +255,7 @@
                                         <div class="comment-item reply-item" id="comment-${reply.commentNo}">
                                             <div class="comment-author-info">
                                                 <strong class="comment-author"><c:out value="${reply.commentWriterNickname}" /></strong>
-                                                <span class="comment-date"><c:out value="${reply.commentCreationDate}" /></span>
+                                                <span class="comment-date"><c:out value="${reply.commentDate}" /></span>
                                                 <div style="margin-left:auto;">
                                                     <c:if test="${not empty sessionScope.loginMember && sessionScope.loginMember.memberNo == reply.memberNo}">
                                                         <button type="button" class="comment-action edit-comment-btn" data-comment-no="${reply.commentNo}">수정</button>

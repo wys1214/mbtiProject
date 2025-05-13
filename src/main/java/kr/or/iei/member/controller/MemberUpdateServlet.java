@@ -34,7 +34,7 @@ public class MemberUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//가져올건 유저의 번호, mbti, id, 이름,이메일,전화번호.
-		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
+		String memberNo = request.getParameter("memberNo");
 		String memberMbti = request.getParameter("memberMbti");
 		String memberId = request.getParameter("memberId");
 		String memberNickname = request.getParameter("memberNickname");

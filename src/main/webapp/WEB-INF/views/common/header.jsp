@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <link rel="stylesheet" href="/resource/css/default.css">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="/resources/js/sweetalert.min.js"></script>
+<script src="/resource/js/sweetalert.min.js"></script>
 
 <!-- 상단 헤더 전체 -->
 <header>
@@ -13,7 +13,7 @@
   <!-- 메뉴바 + 로그인/회원가입 -->
   <div class="header_bottom">
     <div class="menubar">
-      <a href="/board?type=notice">공지사항</a>
+      <a href="/board?type=notice&reqPage=1">공지사항</a>
       <a href="/board?type=free">자유게시판</a>
       <a href="/board?type=worry">고민있어요</a>
       <a href="/board?type=recommend">추천합니다</a>
@@ -29,4 +29,12 @@
       <button class="signup-btn">회원가입</button>
     </div>
   </div>
+  
+  <script>
+ 
+  $('.signup-btn').on('click', function () {
+      location.href = '/member/joinFrm';
+    });
+  
+  </script>
 </header>

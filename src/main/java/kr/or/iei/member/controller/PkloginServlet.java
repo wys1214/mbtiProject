@@ -30,7 +30,7 @@ public class PkloginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 Member testMember = new Member();
-	        testMember.setMemberNo(250513001);
+	        testMember.setMemberNo("250513001");
 	        testMember.setMemberId("admin");
 	        testMember.setMemberPw("1234");  
 	        testMember.setMemberNickname("관리자");

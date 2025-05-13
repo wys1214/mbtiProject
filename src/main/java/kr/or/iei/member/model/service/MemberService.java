@@ -15,19 +15,19 @@ public class MemberService {
 	public MemberService() {
 		dao = new MemberDao();
 	}
-/*
-	public int memberJoin(Member member) {
+
+	public int memberJoin(Member newMember) {
 		Connection conn = JDBCTemplate.getConnection();
-		int joinResult = dao.memberJoin(conn, member);
+		int result = dao.memberJoin(conn, newMember);
 		
-		if (joinResult > 0) {
+		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
 		
-		return joinResult;
+		return result;
 	}
 
 	public int idDuplChk(String memberId) {
@@ -39,7 +39,19 @@ public class MemberService {
 		
 		return cnt;
 	}
-*/
+	
+	public int nicknameDuplChk(String memberNickname) {
+		Connection conn = JDBCTemplate.getConnection();
+		int cnt = dao.idDuplChk(conn, memberNickname);
+		
+		//단순 확인 작업이므로 커밋/롤백 작업 필요없음
+		JDBCTemplate.close(conn);
+		
+		return cnt;
+		
+	}
+
+
 	public Member memberLogin(String loginId, String loginPw) {
 		Connection conn = JDBCTemplate.getConnection();
 		Member loginMember = dao.memberLogin(conn, loginId, loginPw);
